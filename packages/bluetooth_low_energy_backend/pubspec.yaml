@@ -1,7 +1,7 @@
-name: flutter_reactive_ble_backend
-description: "Flutter reactive BLE backend"
-version: 0.1.0
-homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/flutter_reactive_ble_backend
+name: bluetooth_low_energy_backend
+description: "Bluetooth Low Energy backend"
+version: 1.0.0
+homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/bluetooth_low_energy_backend
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   ble_backend: ^1.0.0
-  flutter_reactive_ble: ^5.3.1
+  bluetooth_low_energy: ^6.0.2
   meta: ^1.15.0
 
 dev_dependencies:
