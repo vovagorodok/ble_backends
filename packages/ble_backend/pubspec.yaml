@@ -1,7 +1,7 @@
 name: ble_backend
 description: "BLE backend interfaces"
 version: 1.0.0
-homepage: https://github.com/vovagorodok/ble_backends/blob/main/ble_backend
+homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/ble_backend
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
