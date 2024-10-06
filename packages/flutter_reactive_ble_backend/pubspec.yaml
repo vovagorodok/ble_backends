@@ -1,6 +1,6 @@
 name: flutter_reactive_ble_backend
 description: "Flutter reactive BLE backend"
-version: 0.1.0
+version: 1.0.0
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/flutter_reactive_ble_backend
 
 environment:

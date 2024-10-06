@@ -1,7 +1,7 @@
-name: bluetooth_low_energy_backend
-description: "Bluetooth Low Energy backend"
+name: bluez_backend
+description: "BlueZ backend"
 version: 0.1.0
-homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/bluetooth_low_energy_backend
+homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/bluez_backend
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   ble_backend: ^1.0.0
-  bluetooth_low_energy: ^6.0.2
+  bluez: ^0.8.2
   meta: ^1.15.0
 
 dev_dependencies:
