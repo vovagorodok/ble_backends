@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_peripheral.dart';
 
 class FlutterReactiveBleScanner extends BaseBleScanner {

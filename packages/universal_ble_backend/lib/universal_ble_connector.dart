@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:universal_ble/universal_ble.dart' as backend;
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:universal_ble_backend/universal_ble_mtu.dart';
 import 'package:universal_ble_backend/universal_ble_characteristic.dart';
 

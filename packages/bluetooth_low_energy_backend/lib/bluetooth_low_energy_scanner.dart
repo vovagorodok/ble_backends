@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bluetooth_low_energy/bluetooth_low_energy.dart';
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_peripheral.dart';
 
 class BluetoothLowEnergyScanner extends BaseBleScanner {

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:universal_ble/universal_ble.dart';
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:universal_ble_backend/universal_ble_peripheral.dart';
 
 class UniversalBleScanner extends BaseBleScanner {

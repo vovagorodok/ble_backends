@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:ble_backend/ble_connector.dart';
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_mtu.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_characteristic.dart';
 

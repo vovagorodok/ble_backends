@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:win_ble/win_ble.dart';
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:win_ble_backend/win_ble_peripheral.dart';
 
 class WinBleScanner extends BaseBleScanner {

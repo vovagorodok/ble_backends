@@ -2,9 +2,9 @@ import 'dart:async';
 
 import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 import "package:flutter_web_bluetooth/js_web_bluetooth.dart";
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:flutter_web_bluetooth_backend/flutter_web_bluetooth_peripheral.dart';
 
 class FlutterWebBluetoothScanner extends BaseBleScanner {

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:win_ble/win_ble.dart' as backend;
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:win_ble_backend/win_ble_mtu.dart';
 import 'package:win_ble_backend/win_ble_characteristic.dart';
 

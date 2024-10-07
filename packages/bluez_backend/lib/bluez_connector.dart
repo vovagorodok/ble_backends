@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bluez/bluez.dart';
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:bluez_backend/bluez_mtu.dart';
 import 'package:bluez_backend/bluez_characteristic.dart';
 

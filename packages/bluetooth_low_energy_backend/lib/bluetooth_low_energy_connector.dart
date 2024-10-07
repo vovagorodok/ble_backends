@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bluetooth_low_energy/bluetooth_low_energy.dart';
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_mtu.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_characteristic.dart';
 

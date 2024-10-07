@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
-import 'package:ble_backend/base_ble_connector.dart';
 import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend/ble_mtu.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/base/base_ble_connector.dart';
 import 'package:flutter_web_bluetooth_backend/flutter_web_bluetooth_mtu.dart';
 import 'package:flutter_web_bluetooth_backend/flutter_web_bluetooth_characteristic.dart';
 

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bluez/bluez.dart';
-import 'package:ble_backend/base_ble_scanner.dart';
 import 'package:ble_backend/ble_scanner.dart';
 import 'package:ble_backend/ble_peripheral.dart';
+import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:bluez_backend/bluez_peripheral.dart';
 
 class BlueZScanner extends BaseBleScanner {
