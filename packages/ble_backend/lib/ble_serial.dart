@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:ble_backend/data_notifier.dart';
-import 'package:ble_backend/timer_wrapper.dart';
 import 'package:ble_backend/ble_characteristic.dart';
+import 'package:ble_backend/utils/timer_wrapper.dart';
 
 class BleSerial extends DataNotifier<Uint8List> {
   BleSerial(
