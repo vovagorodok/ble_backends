@@ -39,7 +39,7 @@ await bleConnector.connect();
 Mtu:
 ```dart
 final bleMtu = bleConnector.createMtu();
-if (bleMtu.isRequestSupported) print("Mtu requested: ${await bleMtu.request(128)}");
+if (bleMtu.isRequestSupported) print("Mtu requested: ${await bleMtu.request(mtu: 128)}");
 ```
 
 Characteristic:
@@ -62,6 +62,6 @@ final bleSerial = bleConnector.createSerial(
 bleSerial.dataStream.listen((data) => print("Serial data received: $data"));
 await bleSerial.startNotifications();
 await bleSerial.send(data: data);
-await bleSerial.waitData(timeoutCallback: () => print("Serial data not received"));
+bleSerial.waitData(timeoutCallback: () => print("Serial data not received"));
 await bleSerial.stopNotifications();
 ```
