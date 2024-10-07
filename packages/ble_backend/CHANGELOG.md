@@ -1,3 +1,7 @@
+## 1.2.1
+
+* Added usage section
+
 ## 1.2.0
 
 * Fixed interface typo
