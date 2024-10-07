@@ -20,7 +20,7 @@ class WinBleCentral extends BleCentral {
   BleCentralStatus get state => _status;
 
   @override
-  BleScanner createScaner({required List<String> serviceIds}) {
+  BleScanner createScanner({required List<String> serviceIds}) {
     return WinBleScanner(serviceIds: serviceIds);
   }
 

@@ -1,6 +1,6 @@
 name: ble_backend
 description: "BLE backend interfaces"
-version: 1.1.0
+version: 1.2.0
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/ble_backend
 
 environment:
