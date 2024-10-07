@@ -1,3 +1,7 @@
+## 0.3.1
+
+** Updated README
+
 ## 0.3.0
 
 * Fixed interface typo
