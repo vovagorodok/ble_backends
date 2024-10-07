@@ -1,3 +1,7 @@
+## 1.2.2
+
+* Updated README
+
 ## 1.2.1
 
 * Added usage section
