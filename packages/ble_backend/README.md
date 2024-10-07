@@ -1,4 +1,4 @@
-# BLE Backend
+# BLE backend
 
 BLE backend interfaces
 
