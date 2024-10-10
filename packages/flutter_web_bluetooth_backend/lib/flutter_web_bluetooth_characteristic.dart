@@ -36,9 +36,9 @@ class FlutterWebBluetoothCharacteristic extends BleCharacteristic {
   @override
   Future<void> startNotifications() async {
     final characteristic = await _getCharacteristic();
-    await characteristic.startNotifications();
     _subscription = characteristic.value
         .listen((data) => notifyData(data.buffer.asUint8List()));
+    await characteristic.startNotifications();
   }
 
   @override

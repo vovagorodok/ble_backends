@@ -43,13 +43,13 @@ class BluetoothLowEnergyCharacteristic extends BleCharacteristic {
   @override
   Future<void> startNotifications() async {
     final characteristic = _getCharacteristic();
-    await backend.setCharacteristicNotifyState(peripheral, characteristic!,
-        state: true);
     _subscription = backend.characteristicNotified.listen((data) {
       if (data.peripheral.uuid != peripheral.uuid ||
           data.characteristic.uuid != characteristicId) return;
       notifyData(data.value);
     });
+    await backend.setCharacteristicNotifyState(peripheral, characteristic!,
+        state: true);
   }
 
   @override

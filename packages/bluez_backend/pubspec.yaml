@@ -1,6 +1,6 @@
 name: bluez_backend
 description: "BlueZ backend"
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/bluez_backend
 
 environment:

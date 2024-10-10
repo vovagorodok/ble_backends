@@ -1,6 +1,6 @@
 name: flutter_web_bluetooth_backend
 description: "Flutter Web Bluetooth backend"
-version: 1.2.1
+version: 1.2.2
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/flutter_web_bluetooth_backend
 
 environment:

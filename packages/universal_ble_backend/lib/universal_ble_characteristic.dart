@@ -46,8 +46,8 @@ class UniversalBleCharacteristic extends BleCharacteristic {
 
   @override
   Future<void> stopNotifications() async {
-    backend.UniversalBle.onValueChange = null;
     backend.UniversalBle.setNotifiable(deviceId, serviceId, characteristicId,
         backend.BleInputProperty.disabled);
+    backend.UniversalBle.onValueChange = null;
   }
 }

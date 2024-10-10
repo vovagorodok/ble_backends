@@ -35,12 +35,12 @@ class BlueZCharacteristic extends BleCharacteristic {
   @override
   Future<void> startNotifications() async {
     final characteristic = _getCharacteristic();
-    await characteristic.startNotify();
     _subscription = characteristic.propertiesChanged
         .where((properties) => properties.contains('Value'))
         .listen((properties) {
       notifyData(Uint8List.fromList(characteristic.value));
     });
+    await characteristic.startNotify();
   }
 
   @override
