@@ -1,0 +1,24 @@
+name: ble_backend_screens_example
+description: "BLE backend screens example"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  ble_backend: ^1.2.2
+  ble_backend_factory: ^1.1.2
+  ble_backend_screens:
+    path: ..
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  icons_launcher: ^3.0.0
+
+flutter:
+  uses-material-design: true
