@@ -87,8 +87,14 @@ class PeripheralScreenState extends State<PeripheralScreen> {
   Widget _buildServicesList() {
     return ListView.builder(
         itemCount: _services.length,
-        itemBuilder: (context, index) =>
-            Card(child: ListTile(title: Text(_services[index]))));
+        itemBuilder: (context, index) => Card(
+                child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                _services[index],
+                textAlign: TextAlign.center,
+              ),
+            )));
   }
 
   Widget _buildPortrait() => Column(
