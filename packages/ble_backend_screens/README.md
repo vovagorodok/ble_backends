@@ -1,10 +1,9 @@
 # BLE backend screens
 
-BLE status and scanner screens that halps to create examples with `ble_backend` library
+BLE `status` and `scanner` screens that halps to create examples with `ble_backend` library
 
 ## Usage
-
-Cantral:
+Just implement `PeripheralScreen` and use as follows:
 ```dart
 ScannerScreen(
     bleCentral: bleCentral,
