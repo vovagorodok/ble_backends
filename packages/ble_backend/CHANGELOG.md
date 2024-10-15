@@ -1,6 +1,6 @@
 ## 1.2.3
 
-* Formating fix
+* Formatting fix
 
 ## 1.2.2
 

@@ -5,12 +5,12 @@ import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:ble_backend/ble_characteristic.dart';
 
 class FlutterReactiveBleCharacteristic extends BleCharacteristic {
-  FlutterReactiveBleCharacteristic(
-      {required this.backend,
-      required String deviceId,
-      required Uuid serviceId,
-      required Uuid characteristicId})
-      : _characteristic = QualifiedCharacteristic(
+  FlutterReactiveBleCharacteristic({
+    required this.backend,
+    required String deviceId,
+    required Uuid serviceId,
+    required Uuid characteristicId,
+  }) : _characteristic = QualifiedCharacteristic(
             characteristicId: characteristicId,
             serviceId: serviceId,
             deviceId: deviceId);

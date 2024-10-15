@@ -6,12 +6,13 @@ import 'package:ble_backend/ble_characteristic.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_connector.dart';
 
 class BluetoothLowEnergyCharacteristic extends BleCharacteristic {
-  BluetoothLowEnergyCharacteristic(
-      {required this.backend,
-      required this.connector,
-      required this.peripheral,
-      required this.serviceId,
-      required this.characteristicId});
+  BluetoothLowEnergyCharacteristic({
+    required this.backend,
+    required this.connector,
+    required this.peripheral,
+    required this.serviceId,
+    required this.characteristicId,
+  });
 
   final CentralManager backend;
   final BluetoothLowEnergyConnector connector;

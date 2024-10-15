@@ -5,10 +5,11 @@ import 'package:universal_ble/universal_ble.dart' as backend;
 import 'package:ble_backend/ble_characteristic.dart';
 
 class UniversalBleCharacteristic extends BleCharacteristic {
-  UniversalBleCharacteristic(
-      {required this.deviceId,
-      required this.serviceId,
-      required this.characteristicId});
+  UniversalBleCharacteristic({
+    required this.deviceId,
+    required this.serviceId,
+    required this.characteristicId,
+  });
 
   final String deviceId;
   final String serviceId;

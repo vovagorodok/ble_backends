@@ -1,10 +1,14 @@
+## 0.3.3
+
+* Formatting fix
+
 ## 0.3.2
 
-** Subscribe before set notifiable
+* Subscribe before set notifiable
 
 ## 0.3.1
 
-** Updated README
+* Updated README
 
 ## 0.3.0
 

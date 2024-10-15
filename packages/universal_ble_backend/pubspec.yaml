@@ -1,6 +1,6 @@
 name: universal_ble_backend
 description: "Universal BLE backend"
-version: 0.3.2
+version: 0.3.3
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/universal_ble_backend
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ble_backend: ^1.2.2
+  ble_backend: ^1.2.3
   universal_ble: ^0.13.0
   meta: ^1.15.0
 

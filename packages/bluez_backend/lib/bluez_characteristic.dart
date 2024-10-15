@@ -5,10 +5,11 @@ import 'package:bluez/bluez.dart';
 import 'package:ble_backend/ble_characteristic.dart';
 
 class BlueZCharacteristic extends BleCharacteristic {
-  BlueZCharacteristic(
-      {required this.device,
-      required this.serviceId,
-      required this.characteristicId});
+  BlueZCharacteristic({
+    required this.device,
+    required this.serviceId,
+    required this.characteristicId,
+  });
 
   final BlueZDevice device;
   final BlueZUUID serviceId;

@@ -9,10 +9,11 @@ import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_mtu.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_characteristic.dart';
 
 class BluetoothLowEnergyConnector extends BaseBleConnector {
-  BluetoothLowEnergyConnector(
-      {required this.backend,
-      required this.serviceIds,
-      required this.peripheral}) {
+  BluetoothLowEnergyConnector({
+    required this.backend,
+    required this.serviceIds,
+    required this.peripheral,
+  }) {
     backend.connectionStateChanged.listen(_updateState);
   }
 

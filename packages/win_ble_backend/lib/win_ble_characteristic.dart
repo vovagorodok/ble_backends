@@ -5,10 +5,11 @@ import 'package:win_ble/win_ble.dart' as backend;
 import 'package:ble_backend/ble_characteristic.dart';
 
 class WinBleCharacteristic extends BleCharacteristic {
-  WinBleCharacteristic(
-      {required this.deviceId,
-      required this.serviceId,
-      required this.characteristicId}) {
+  WinBleCharacteristic({
+    required this.deviceId,
+    required this.serviceId,
+    required this.characteristicId,
+  }) {
     backend.WinBle.characteristicValueStreamOf(
             address: deviceId,
             serviceId: serviceId,

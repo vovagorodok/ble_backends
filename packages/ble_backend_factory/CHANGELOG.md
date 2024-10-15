@@ -1,10 +1,10 @@
 ## 1.1.2
 
-** Subscribe before set notifiable
+* Subscribe before set notifiable
 
 ## 1.1.1
 
-** Updated README
+* Updated README
 
 ## 1.1.0
 

@@ -4,10 +4,11 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_connector.dart';
 
 class FlutterReactiveBlePeripheral extends BlePeripheral {
-  FlutterReactiveBlePeripheral(
-      {required this.backend,
-      required this.serviceIds,
-      required this.discoveredDevice});
+  FlutterReactiveBlePeripheral({
+    required this.backend,
+    required this.serviceIds,
+    required this.discoveredDevice,
+  });
 
   final FlutterReactiveBle backend;
   final List<Uuid> serviceIds;

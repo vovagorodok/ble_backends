@@ -5,10 +5,11 @@ import "package:flutter_web_bluetooth/flutter_web_bluetooth.dart";
 import 'package:ble_backend/ble_characteristic.dart';
 
 class FlutterWebBluetoothCharacteristic extends BleCharacteristic {
-  FlutterWebBluetoothCharacteristic(
-      {required this.device,
-      required this.serviceId,
-      required this.characteristicId});
+  FlutterWebBluetoothCharacteristic({
+    required this.device,
+    required this.serviceId,
+    required this.characteristicId,
+  });
 
   final BluetoothDevice device;
   final String serviceId;

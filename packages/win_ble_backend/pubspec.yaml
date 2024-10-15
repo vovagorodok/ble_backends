@@ -1,6 +1,6 @@
 name: win_ble_backend
 description: "Win BLE backend"
-version: 0.3.1
+version: 0.3.2
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/win_ble_backend
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ble_backend: ^1.2.2
+  ble_backend: ^1.2.3
   win_ble: ^1.1.1
   meta: ^1.15.0
 

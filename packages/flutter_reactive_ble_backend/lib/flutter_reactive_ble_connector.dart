@@ -9,10 +9,11 @@ import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_mtu.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_characteristic.dart';
 
 class FlutterReactiveBleConnector extends BaseBleConnector {
-  FlutterReactiveBleConnector(
-      {required this.backend,
-      required this.deviceId,
-      required this.serviceIds});
+  FlutterReactiveBleConnector({
+    required this.backend,
+    required this.deviceId,
+    required this.serviceIds,
+  });
 
   final FlutterReactiveBle backend;
   final String deviceId;

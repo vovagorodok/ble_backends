@@ -1,6 +1,6 @@
 name: bluetooth_low_energy_backend
 description: "Bluetooth Low Energy backend"
-version: 0.3.2
+version: 0.3.3
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/bluetooth_low_energy_backend
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ble_backend: ^1.2.2
+  ble_backend: ^1.2.3
   bluetooth_low_energy: ^6.0.2
   meta: ^1.15.0
 
