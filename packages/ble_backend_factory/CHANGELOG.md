@@ -1,3 +1,7 @@
+## 1.1.3
+
+* Update internal libraries
+
 ## 1.1.2
 
 * Subscribe before set notifiable
