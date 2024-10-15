@@ -6,10 +6,10 @@ import 'package:ble_backend/ble_characteristic.dart';
 import 'package:ble_backend/utils/timer_wrapper.dart';
 
 class BleSerial extends DataNotifier<Uint8List> {
-  BleSerial(
-      {required BleCharacteristic characteristicRx,
-      required BleCharacteristic characteristicTx})
-      : _characteristicRx = characteristicRx,
+  BleSerial({
+    required BleCharacteristic characteristicRx,
+    required BleCharacteristic characteristicTx,
+  })  : _characteristicRx = characteristicRx,
         _characteristicTx = characteristicTx {
     _subscription = _characteristicTx.dataStream.listen((data) {
       _responseGuard.stop();

@@ -1,3 +1,7 @@
+## 1.2.3
+
+* Formating fix
+
 ## 1.2.2
 
 * Updated README

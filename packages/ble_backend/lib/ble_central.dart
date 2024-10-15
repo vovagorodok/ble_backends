@@ -4,8 +4,10 @@ import 'package:ble_backend/ble_connector.dart';
 
 abstract class BleCentral extends StatefulNotifier<BleCentralStatus> {
   BleScanner createScanner({required List<String> serviceIds});
-  BleConnector createConnectorToKnownDevice(
-      {required String deviceId, required List<String> serviceIds});
+  BleConnector createConnectorToKnownDevice({
+    required String deviceId,
+    required List<String> serviceIds,
+  });
   bool get isCreateConnectorToKnownDeviceSupported;
 }
 
