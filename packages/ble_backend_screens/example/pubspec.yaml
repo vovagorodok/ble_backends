@@ -9,8 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  ble_backend: ^1.2.2
-  ble_backend_factory: ^1.1.2
+  ble_backend: ^1.2.3
+  ble_backend_factory: ^1.1.3
   ble_backend_screens:
     path: ..
 
