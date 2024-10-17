@@ -26,9 +26,10 @@ class BleSerial extends DataNotifier<Uint8List> {
     await _characteristicRx.writeWithoutResponse(data: data);
   }
 
-  void waitData(
-      {required void Function() timeoutCallback,
-      Duration duration = const Duration(seconds: 20)}) {
+  void waitData({
+    required void Function() timeoutCallback,
+    Duration duration = const Duration(seconds: 20),
+  }) {
     _responseGuard.start(duration, timeoutCallback);
   }
 
