@@ -1,3 +1,8 @@
+## 1.3.0
+
+* Serial direction swap
+* Use flutter_web_bluetooth 1.0.0
+
 ## 1.2.3
 
 * Formatting fix

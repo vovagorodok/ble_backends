@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Serial direction swap
+
 ## 1.2.2
 
 * Formatting fix
