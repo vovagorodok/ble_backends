@@ -5,7 +5,6 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   bluetooth_low_energy_windows
   permission_handler_windows
-  universal_ble
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

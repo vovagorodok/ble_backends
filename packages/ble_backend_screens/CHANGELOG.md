@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Update internal libraries
+
 ## 1.0.2
 
 * Update internal libraries
