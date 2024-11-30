@@ -9,10 +9,10 @@ abstract class BaseBleConnector extends BleConnector {
     required String txCharacteristicId,
   }) {
     return BleSerial(
-      characteristicTx: createCharacteristic(
-          serviceId: serviceId, characteristicId: txCharacteristicId),
       characteristicRx: createCharacteristic(
           serviceId: serviceId, characteristicId: rxCharacteristicId),
+      characteristicTx: createCharacteristic(
+          serviceId: serviceId, characteristicId: txCharacteristicId),
     );
   }
 }

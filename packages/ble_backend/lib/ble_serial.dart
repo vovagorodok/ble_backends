@@ -11,7 +11,7 @@ class BleSerial extends DataNotifier<Uint8List> {
     required BleCharacteristic characteristicTx,
   })  : _characteristicRx = characteristicRx,
         _characteristicTx = characteristicTx {
-    _subscription = _characteristicTx.dataStream.listen((data) {
+    _subscription = _characteristicRx.dataStream.listen((data) {
       _responseGuard.stop();
       notifyData(data);
     });
@@ -23,7 +23,7 @@ class BleSerial extends DataNotifier<Uint8List> {
   StreamSubscription? _subscription;
 
   Future<void> send({required Uint8List data}) async {
-    await _characteristicRx.writeWithoutResponse(data: data);
+    await _characteristicTx.writeWithoutResponse(data: data);
   }
 
   void waitData({
@@ -34,11 +34,11 @@ class BleSerial extends DataNotifier<Uint8List> {
   }
 
   Future<void> startNotifications() async {
-    await _characteristicTx.startNotifications();
+    await _characteristicRx.startNotifications();
   }
 
   Future<void> stopNotifications() async {
-    await _characteristicTx.stopNotifications();
+    await _characteristicRx.stopNotifications();
     _responseGuard.stop();
   }
 
