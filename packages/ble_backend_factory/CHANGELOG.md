@@ -1,3 +1,8 @@
+## 1.2.0
+
+* Update internal libraries
+* Switch temporary to win_ble
+
 ## 1.1.3
 
 * Update internal libraries
