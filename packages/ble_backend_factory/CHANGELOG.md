@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Switch back to universal_ble
+
 ## 1.2.0
 
 * Update internal libraries
