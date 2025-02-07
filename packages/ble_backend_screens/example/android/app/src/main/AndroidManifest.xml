@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="ble_backend_screens_example"
+        android:label="BleBackendScreens"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
