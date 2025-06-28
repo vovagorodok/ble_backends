@@ -5,7 +5,10 @@ class TimerWrapper {
 
   void start(Duration duration, void Function() callback) {
     stop();
-    _handle = Timer(duration, callback);
+    _handle = Timer(duration, () {
+      _handle = null;
+      callback();
+    });
   }
 
   void stop() {
