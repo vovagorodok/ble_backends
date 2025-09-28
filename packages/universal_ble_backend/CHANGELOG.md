@@ -1,3 +1,7 @@
+## 0.5.2
+
+* Fixed warnings
+
 ## 0.5.1
 
 * Upgrade dependencies

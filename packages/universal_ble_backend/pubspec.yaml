@@ -1,6 +1,6 @@
 name: universal_ble_backend
 description: "Universal BLE backend"
-version: 0.5.1
+version: 0.5.2
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/universal_ble_backend
 
 environment:

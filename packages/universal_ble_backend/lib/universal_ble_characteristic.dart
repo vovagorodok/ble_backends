@@ -17,20 +17,22 @@ class UniversalBleCharacteristic extends BleCharacteristic {
 
   @override
   Future<Uint8List> read() async {
-    return await backend.UniversalBle.readValue(
+    return await backend.UniversalBle.read(
         deviceId, serviceId, characteristicId);
   }
 
   @override
   Future<void> write({required Uint8List data}) async {
-    await backend.UniversalBle.writeValue(deviceId, serviceId, characteristicId,
-        data, backend.BleOutputProperty.withResponse);
+    await backend.UniversalBle.write(
+        deviceId, serviceId, characteristicId, data,
+        withoutResponse: false);
   }
 
   @override
   Future<void> writeWithoutResponse({required Uint8List data}) async {
-    await backend.UniversalBle.writeValue(deviceId, serviceId, characteristicId,
-        data, backend.BleOutputProperty.withoutResponse);
+    await backend.UniversalBle.write(
+        deviceId, serviceId, characteristicId, data,
+        withoutResponse: true);
   }
 
   @override
@@ -41,14 +43,13 @@ class UniversalBleCharacteristic extends BleCharacteristic {
         notifyData(value);
       }
     };
-    backend.UniversalBle.setNotifiable(deviceId, serviceId, characteristicId,
-        backend.BleInputProperty.notification);
+    backend.UniversalBle.subscribeNotifications(
+        deviceId, serviceId, characteristicId);
   }
 
   @override
   Future<void> stopNotifications() async {
-    backend.UniversalBle.setNotifiable(deviceId, serviceId, characteristicId,
-        backend.BleInputProperty.disabled);
+    backend.UniversalBle.unsubscribe(deviceId, serviceId, characteristicId);
     backend.UniversalBle.onValueChange = null;
   }
 }
