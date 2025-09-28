@@ -1,3 +1,7 @@
+## 1.3.1
+
+* Upgrade dependencies
+
 ## 1.3.0
 
 * Switch back to universal_ble
