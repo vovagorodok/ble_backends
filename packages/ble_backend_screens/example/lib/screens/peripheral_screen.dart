@@ -6,7 +6,7 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:ble_backend_screens/ui/ui_consts.dart';
 
 class PeripheralScreen extends StatefulWidget {
-  PeripheralScreen({
+  const PeripheralScreen({
     required this.blePeripheral,
     required this.bleConnector,
     super.key,
