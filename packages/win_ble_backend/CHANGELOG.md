@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Upgrade dependencies
+
 ## 0.4.0
 
 * Serial direction swap
