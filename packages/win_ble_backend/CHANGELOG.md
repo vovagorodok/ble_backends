@@ -1,3 +1,7 @@
+## 0.5.0
+
+* Upgrade dependencies
+
 ## 0.4.1
 
 * Upgrade dependencies
