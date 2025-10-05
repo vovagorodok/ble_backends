@@ -1,3 +1,7 @@
+## 1.4.1
+
+* Fixed example
+
 ## 1.4.0
 
 * Upgrade dependencies

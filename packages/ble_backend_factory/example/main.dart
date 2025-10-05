@@ -1,6 +1,6 @@
 import 'package:ble_backend/ble_central.dart';
 import 'package:ble_backend/ble_connector.dart';
-import 'package:ble_backend/utils/converters.dart';
+import 'package:ble_backend/utils/serialization.dart';
 import 'package:ble_backend_factory/ble_central.dart';
 
 const serviceId = "dac890c2-35a1-11ef-aba0-9b95565f4ffb";
