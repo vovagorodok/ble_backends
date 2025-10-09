@@ -29,8 +29,9 @@ class FlutterWebBluetoothScanner extends BaseBleScanner {
   Future<void> scan() async {
     devices.clear();
 
-    final requestOptions =
-        RequestOptionsBuilder([RequestFilterBuilder(services: serviceIds)]);
+    final requestOptions = serviceIds.isEmpty
+        ? RequestOptionsBuilder.acceptAllDevices()
+        : RequestOptionsBuilder([RequestFilterBuilder(services: serviceIds)]);
 
     _isScanInProgress = true;
     notifyState(state);
