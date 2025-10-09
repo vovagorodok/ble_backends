@@ -1,3 +1,7 @@
+## 1.4.1
+
+* Fixed empty requestOptions
+
 ## 1.4.0
 
 * Upgrade dependencies
