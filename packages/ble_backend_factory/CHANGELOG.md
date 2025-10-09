@@ -1,3 +1,7 @@
+## 1.4.2
+
+* Using universal_ble for others
+
 ## 1.4.1
 
 * Fixed example

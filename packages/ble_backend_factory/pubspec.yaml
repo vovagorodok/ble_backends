@@ -1,6 +1,6 @@
 name: ble_backend_factory
 description: "BLE central factory of choosed backends"
-version: 1.4.1
+version: 1.4.2
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/ble_backend_factory
 
 environment:
@@ -14,11 +14,9 @@ dependencies:
   flutter_reactive_ble: ^5.4.0
   flutter_reactive_ble_backend: ^1.4.0
   flutter_web_bluetooth: ^1.1.0
-  flutter_web_bluetooth_backend: ^1.4.0
+  flutter_web_bluetooth_backend: ^1.4.1
   bluez: ^0.8.3
   bluez_backend: ^0.5.0
-  bluetooth_low_energy: ^6.1.0
-  bluetooth_low_energy_backend: ^0.5.0
   universal_ble: ^0.21.1
   universal_ble_backend: ^0.6.0
 
