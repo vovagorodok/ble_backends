@@ -37,8 +37,8 @@ class UniversalBleCharacteristic extends BleCharacteristic {
 
   @override
   Future<void> startNotifications() async {
-    backend.UniversalBle.onValueChange =
-        (String deviceId, String characteristicId, Uint8List value) {
+    backend.UniversalBle.onValueChange = (String deviceId,
+        String characteristicId, Uint8List value, int? timestamp) {
       if (characteristicId == this.characteristicId) {
         notifyData(value);
       }
