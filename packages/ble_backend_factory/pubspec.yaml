@@ -1,6 +1,6 @@
 name: ble_backend_factory
 description: "BLE central factory of choosed backends"
-version: 1.4.2
+version: 1.4.3
 homepage: https://github.com/vovagorodok/ble_backends/tree/main/packages/ble_backend_factory
 
 environment:

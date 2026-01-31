@@ -1,3 +1,7 @@
+## 1.4.3
+
+* Upgrade dependencies
+
 ## 1.4.2
 
 * Using universal_ble for others
