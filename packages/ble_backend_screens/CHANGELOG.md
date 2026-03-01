@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Added deviceId to BleConnector
+
 ## 1.2.0
 
 * Upgrade dependencies
