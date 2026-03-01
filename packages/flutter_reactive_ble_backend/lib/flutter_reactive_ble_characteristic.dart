@@ -6,39 +6,41 @@ import 'package:ble_backend/ble_characteristic.dart';
 
 class FlutterReactiveBleCharacteristic extends BleCharacteristic {
   FlutterReactiveBleCharacteristic({
-    required this.backend,
+    required FlutterReactiveBle backend,
     required String deviceId,
     required Uuid serviceId,
     required Uuid characteristicId,
-  }) : _characteristic = QualifiedCharacteristic(
+  })  : _backend = backend,
+        _characteristic = QualifiedCharacteristic(
             characteristicId: characteristicId,
             serviceId: serviceId,
             deviceId: deviceId);
 
-  final FlutterReactiveBle backend;
+  final FlutterReactiveBle _backend;
   final QualifiedCharacteristic _characteristic;
   StreamSubscription? _subscription;
 
   @override
   Future<Uint8List> read() async {
     return Uint8List.fromList(
-        await backend.readCharacteristic(_characteristic));
+        await _backend.readCharacteristic(_characteristic));
   }
 
   @override
   Future<void> write({required Uint8List data}) async {
-    await backend.writeCharacteristicWithResponse(_characteristic, value: data);
+    await _backend.writeCharacteristicWithResponse(_characteristic,
+        value: data);
   }
 
   @override
   Future<void> writeWithoutResponse({required Uint8List data}) async {
-    await backend.writeCharacteristicWithoutResponse(_characteristic,
+    await _backend.writeCharacteristicWithoutResponse(_characteristic,
         value: data);
   }
 
   @override
   Future<void> startNotifications() async {
-    _subscription = backend
+    _subscription = _backend
         .subscribeToCharacteristic(_characteristic)
         .listen((data) => notifyData(Uint8List.fromList(data)));
   }

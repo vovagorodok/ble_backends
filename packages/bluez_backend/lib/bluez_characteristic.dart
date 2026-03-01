@@ -6,14 +6,16 @@ import 'package:ble_backend/ble_characteristic.dart';
 
 class BlueZCharacteristic extends BleCharacteristic {
   BlueZCharacteristic({
-    required this.device,
-    required this.serviceId,
-    required this.characteristicId,
-  });
+    required BlueZDevice device,
+    required BlueZUUID serviceId,
+    required BlueZUUID characteristicId,
+  })  : _device = device,
+        _serviceId = serviceId,
+        _characteristicId = characteristicId;
 
-  final BlueZDevice device;
-  final BlueZUUID serviceId;
-  final BlueZUUID characteristicId;
+  final BlueZDevice _device;
+  final BlueZUUID _serviceId;
+  final BlueZUUID _characteristicId;
   StreamSubscription? _subscription;
 
   @override
@@ -51,9 +53,9 @@ class BlueZCharacteristic extends BleCharacteristic {
   }
 
   BlueZGattCharacteristic _getCharacteristic() {
-    final service =
-        device.gattServices.firstWhere((service) => service.uuid == serviceId);
+    final service = _device.gattServices
+        .firstWhere((service) => service.uuid == _serviceId);
     return service.characteristics.firstWhere(
-        (characteristic) => characteristic.uuid == characteristicId);
+        (characteristic) => characteristic.uuid == _characteristicId);
   }
 }

@@ -9,16 +9,15 @@ import 'package:win_ble_backend/win_ble_mtu.dart';
 import 'package:win_ble_backend/win_ble_characteristic.dart';
 
 class WinBleConnector extends BaseBleConnector {
-  WinBleConnector({required this.deviceId, required this.serviceIds}) {
-    backend.WinBle.connectionStreamOf(deviceId).listen((isConnected) {
+  WinBleConnector({required String deviceId}) : _deviceId = deviceId {
+    backend.WinBle.connectionStreamOf(_deviceId).listen((isConnected) {
       _updateConnectorStatus(isConnected
           ? BleConnectorStatus.connected
           : BleConnectorStatus.disconnected);
     });
   }
 
-  final String deviceId;
-  final List<String> serviceIds;
+  final String _deviceId;
   BleConnectorStatus _state = BleConnectorStatus.disconnected;
 
   @override
@@ -26,12 +25,12 @@ class WinBleConnector extends BaseBleConnector {
 
   @override
   Future<void> connect() async {
-    await backend.WinBle.connect(deviceId);
+    await backend.WinBle.connect(_deviceId);
   }
 
   @override
   Future<void> disconnect() async {
-    await backend.WinBle.disconnect(deviceId);
+    await backend.WinBle.disconnect(_deviceId);
   }
 
   @override
@@ -44,20 +43,23 @@ class WinBleConnector extends BaseBleConnector {
   bool get isConnectToKnownDeviceSupported => false;
 
   @override
+  String get deviceId => _deviceId;
+
+  @override
   Future<List<String>> discoverServices() async {
-    return await backend.WinBle.discoverServices(deviceId);
+    return await backend.WinBle.discoverServices(_deviceId);
   }
 
   @override
   BleMtu createMtu() {
-    return WinBleMtu(deviceId: deviceId);
+    return WinBleMtu(deviceId: _deviceId);
   }
 
   @override
   BleCharacteristic createCharacteristic(
       {required String serviceId, required String characteristicId}) {
     return WinBleCharacteristic(
-        deviceId: deviceId,
+        deviceId: _deviceId,
         serviceId: serviceId,
         characteristicId: characteristicId);
   }

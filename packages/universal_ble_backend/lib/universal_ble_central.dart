@@ -24,7 +24,7 @@ class UniversalBleCentral extends BleCentral {
   @override
   BleConnector createConnectorToKnownDevice(
       {required String deviceId, required List<String> serviceIds}) {
-    return UniversalBleConnector(deviceId: deviceId, serviceIds: serviceIds);
+    return UniversalBleConnector(deviceId: deviceId);
   }
 
   @override

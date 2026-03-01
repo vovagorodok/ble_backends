@@ -5,12 +5,13 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_scanner.dart';
 
 class BluetoothLowEnergyCentral extends BleCentral {
-  BluetoothLowEnergyCentral({required this.backend})
-      : _status = _convertToCentralStatus(backend.state) {
-    backend.stateChanged.listen(_updateState);
+  BluetoothLowEnergyCentral({required CentralManager backend})
+      : _backend = backend,
+        _status = _convertToCentralStatus(backend.state) {
+    _backend.stateChanged.listen(_updateState);
   }
 
-  final CentralManager backend;
+  final CentralManager _backend;
   BleCentralStatus _status;
 
   @override
@@ -19,7 +20,7 @@ class BluetoothLowEnergyCentral extends BleCentral {
   @override
   BleScanner createScanner({required List<String> serviceIds}) {
     return BluetoothLowEnergyScanner(
-        backend: backend, serviceIds: _convertToUuids(serviceIds));
+        backend: _backend, serviceIds: _convertToUuids(serviceIds));
   }
 
   @override

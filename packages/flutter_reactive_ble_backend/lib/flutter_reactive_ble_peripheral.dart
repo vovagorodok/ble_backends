@@ -5,25 +5,27 @@ import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_connector.dart
 
 class FlutterReactiveBlePeripheral extends BlePeripheral {
   FlutterReactiveBlePeripheral({
-    required this.backend,
-    required this.serviceIds,
-    required this.discoveredDevice,
-  });
+    required FlutterReactiveBle backend,
+    required List<Uuid> serviceIds,
+    required DiscoveredDevice discoveredDevice,
+  })  : _backend = backend,
+        _serviceIds = serviceIds,
+        _discoveredDevice = discoveredDevice;
 
-  final FlutterReactiveBle backend;
-  final List<Uuid> serviceIds;
-  final DiscoveredDevice discoveredDevice;
+  final FlutterReactiveBle _backend;
+  final List<Uuid> _serviceIds;
+  final DiscoveredDevice _discoveredDevice;
 
   @override
-  String get id => discoveredDevice.id;
+  String get id => _discoveredDevice.id;
   @override
-  String? get name => discoveredDevice.name;
+  String? get name => _discoveredDevice.name;
   @override
-  int? get rssi => discoveredDevice.rssi;
+  int? get rssi => _discoveredDevice.rssi;
 
   @override
   BleConnector createConnector() {
     return FlutterReactiveBleConnector(
-        backend: backend, deviceId: id, serviceIds: serviceIds);
+        backend: _backend, deviceId: id, serviceIds: _serviceIds);
   }
 }

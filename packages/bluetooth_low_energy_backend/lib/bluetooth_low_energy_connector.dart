@@ -10,16 +10,15 @@ import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_characteristic
 
 class BluetoothLowEnergyConnector extends BaseBleConnector {
   BluetoothLowEnergyConnector({
-    required this.backend,
-    required this.serviceIds,
-    required this.peripheral,
-  }) {
-    backend.connectionStateChanged.listen(_updateState);
+    required CentralManager backend,
+    required Peripheral peripheral,
+  })  : _backend = backend,
+        _peripheral = peripheral {
+    _backend.connectionStateChanged.listen(_updateState);
   }
 
-  final CentralManager backend;
-  final List<UUID> serviceIds;
-  final Peripheral peripheral;
+  final CentralManager _backend;
+  final Peripheral _peripheral;
   BleConnectorStatus _status = BleConnectorStatus.disconnected;
   List<GATTService>? _services;
 
@@ -28,12 +27,12 @@ class BluetoothLowEnergyConnector extends BaseBleConnector {
 
   @override
   Future<void> connect() async {
-    await backend.connect(peripheral);
+    await _backend.connect(_peripheral);
   }
 
   @override
   Future<void> disconnect() async {
-    await backend.disconnect(peripheral);
+    await _backend.disconnect(_peripheral);
   }
 
   @override
@@ -46,22 +45,25 @@ class BluetoothLowEnergyConnector extends BaseBleConnector {
   bool get isConnectToKnownDeviceSupported => false;
 
   @override
+  String get deviceId => _peripheral.uuid.toString();
+
+  @override
   Future<List<String>> discoverServices() async {
     return _services!.map((service) => service.uuid.toString()).toList();
   }
 
   @override
   BleMtu createMtu() {
-    return BluetoothLowEnergyMtu(backend: backend, peripheral: peripheral);
+    return BluetoothLowEnergyMtu(backend: _backend, peripheral: _peripheral);
   }
 
   @override
   BleCharacteristic createCharacteristic(
       {required String serviceId, required String characteristicId}) {
     return BluetoothLowEnergyCharacteristic(
-        backend: backend,
+        backend: _backend,
         connector: this,
-        peripheral: peripheral,
+        peripheral: _peripheral,
         serviceId: UUID.fromString(serviceId),
         characteristicId: UUID.fromString(characteristicId));
   }
@@ -74,10 +76,10 @@ class BluetoothLowEnergyConnector extends BaseBleConnector {
   }
 
   void _updateState(PeripheralConnectionStateChangedEventArgs update) {
-    if (update.peripheral != peripheral) return;
+    if (update.peripheral != _peripheral) return;
 
     if (update.state == ConnectionState.connected) {
-      backend.discoverGATT(peripheral).then((services) {
+      _backend.discoverGATT(_peripheral).then((services) {
         _services = services;
         _updateConnectorStatus(BleConnectorStatus.connected);
       });

@@ -8,7 +8,8 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:flutter_web_bluetooth_backend/flutter_web_bluetooth_peripheral.dart';
 
 class FlutterWebBluetoothScanner extends BaseBleScanner {
-  FlutterWebBluetoothScanner({required this.serviceIds}) {
+  FlutterWebBluetoothScanner({required List<String> serviceIds})
+      : _serviceIds = serviceIds {
     FlutterWebBluetooth.instance.devices.listen((devices) {
       for (var device in devices) {
         addPeripheral(_createPeripheral(device));
@@ -16,7 +17,7 @@ class FlutterWebBluetoothScanner extends BaseBleScanner {
     });
   }
 
-  List<String> serviceIds;
+  List<String> _serviceIds;
   bool _isScanInProgress = false;
 
   @override
@@ -29,9 +30,9 @@ class FlutterWebBluetoothScanner extends BaseBleScanner {
   Future<void> scan() async {
     devices.clear();
 
-    final requestOptions = serviceIds.isEmpty
+    final requestOptions = _serviceIds.isEmpty
         ? RequestOptionsBuilder.acceptAllDevices()
-        : RequestOptionsBuilder([RequestFilterBuilder(services: serviceIds)]);
+        : RequestOptionsBuilder([RequestFilterBuilder(services: _serviceIds)]);
 
     _isScanInProgress = true;
     notifyState(state);

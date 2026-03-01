@@ -44,6 +44,9 @@ class FlutterWebBluetoothConnector extends BaseBleConnector {
   bool get isConnectToKnownDeviceSupported => true;
 
   @override
+  String get deviceId => device.id;
+
+  @override
   Future<List<String>> discoverServices() async {
     return (await device.discoverServices())
         .map((service) => service.uuid)

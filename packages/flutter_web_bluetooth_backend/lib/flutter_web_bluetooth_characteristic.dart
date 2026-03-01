@@ -6,14 +6,16 @@ import 'package:ble_backend/ble_characteristic.dart';
 
 class FlutterWebBluetoothCharacteristic extends BleCharacteristic {
   FlutterWebBluetoothCharacteristic({
-    required this.device,
-    required this.serviceId,
-    required this.characteristicId,
-  });
+    required BluetoothDevice device,
+    required String serviceId,
+    required String characteristicId,
+  })  : _device = device,
+        _serviceId = serviceId,
+        _characteristicId = characteristicId;
 
-  final BluetoothDevice device;
-  final String serviceId;
-  final String characteristicId;
+  final BluetoothDevice _device;
+  final String _serviceId;
+  final String _characteristicId;
   StreamSubscription? _subscription;
 
   @override
@@ -50,9 +52,10 @@ class FlutterWebBluetoothCharacteristic extends BleCharacteristic {
   }
 
   Future<BluetoothCharacteristic> _getCharacteristic() async {
-    final services = await device.discoverServices();
-    final service = services.firstWhere((service) => service.uuid == serviceId);
-    final characteristic = await service.getCharacteristic(characteristicId);
+    final services = await _device.discoverServices();
+    final service =
+        services.firstWhere((service) => service.uuid == _serviceId);
+    final characteristic = await service.getCharacteristic(_characteristicId);
     return characteristic;
   }
 }

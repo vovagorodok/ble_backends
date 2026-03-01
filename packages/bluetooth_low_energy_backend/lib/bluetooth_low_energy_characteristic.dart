@@ -7,61 +7,65 @@ import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_connector.dart
 
 class BluetoothLowEnergyCharacteristic extends BleCharacteristic {
   BluetoothLowEnergyCharacteristic({
-    required this.backend,
-    required this.connector,
-    required this.peripheral,
-    required this.serviceId,
-    required this.characteristicId,
-  });
+    required CentralManager backend,
+    required BluetoothLowEnergyConnector connector,
+    required Peripheral peripheral,
+    required UUID serviceId,
+    required UUID characteristicId,
+  })  : _backend = backend,
+        _connector = connector,
+        _peripheral = peripheral,
+        _serviceId = serviceId,
+        _characteristicId = characteristicId;
 
-  final CentralManager backend;
-  final BluetoothLowEnergyConnector connector;
-  final Peripheral peripheral;
-  final UUID serviceId;
-  final UUID characteristicId;
+  final CentralManager _backend;
+  final BluetoothLowEnergyConnector _connector;
+  final Peripheral _peripheral;
+  final UUID _serviceId;
+  final UUID _characteristicId;
   StreamSubscription? _subscription;
 
   @override
   Future<Uint8List> read() async {
     final characteristic = _getCharacteristic();
-    return await backend.readCharacteristic(peripheral, characteristic!);
+    return await _backend.readCharacteristic(_peripheral, characteristic!);
   }
 
   @override
   Future<void> write({required Uint8List data}) async {
     final characteristic = _getCharacteristic();
-    await backend.writeCharacteristic(peripheral, characteristic!,
+    await _backend.writeCharacteristic(_peripheral, characteristic!,
         value: data, type: GATTCharacteristicWriteType.withResponse);
   }
 
   @override
   Future<void> writeWithoutResponse({required Uint8List data}) async {
     final characteristic = _getCharacteristic();
-    await backend.writeCharacteristic(peripheral, characteristic!,
+    await _backend.writeCharacteristic(_peripheral, characteristic!,
         value: data, type: GATTCharacteristicWriteType.withoutResponse);
   }
 
   @override
   Future<void> startNotifications() async {
     final characteristic = _getCharacteristic();
-    _subscription = backend.characteristicNotified.listen((data) {
-      if (data.peripheral.uuid != peripheral.uuid ||
-          data.characteristic.uuid != characteristicId) return;
+    _subscription = _backend.characteristicNotified.listen((data) {
+      if (data.peripheral.uuid != _peripheral.uuid ||
+          data.characteristic.uuid != _characteristicId) return;
       notifyData(data.value);
     });
-    await backend.setCharacteristicNotifyState(peripheral, characteristic!,
+    await _backend.setCharacteristicNotifyState(_peripheral, characteristic!,
         state: true);
   }
 
   @override
   Future<void> stopNotifications() async {
     final characteristic = _getCharacteristic();
-    await backend.setCharacteristicNotifyState(peripheral, characteristic!,
+    await _backend.setCharacteristicNotifyState(_peripheral, characteristic!,
         state: false);
     await _subscription?.cancel();
   }
 
   GATTCharacteristic? _getCharacteristic() {
-    return connector.getCharacteristic(serviceId, characteristicId);
+    return _connector.getCharacteristic(_serviceId, _characteristicId);
   }
 }

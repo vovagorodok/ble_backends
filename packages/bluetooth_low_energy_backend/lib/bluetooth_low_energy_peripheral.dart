@@ -4,26 +4,27 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_connector.dart';
 
 class BluetoothLowEnergyPeripheral extends BlePeripheral {
-  BluetoothLowEnergyPeripheral(
-      {required this.backend, required this.serviceIds, required this.device});
+  BluetoothLowEnergyPeripheral({
+    required CentralManager backend,
+    required DiscoveredEventArgs device,
+  })  : _backend = backend,
+        _device = device;
 
-  final CentralManager backend;
-  final List<UUID> serviceIds;
-  final DiscoveredEventArgs device;
+  final CentralManager _backend;
+  final DiscoveredEventArgs _device;
 
   @override
-  String get id => device.peripheral.uuid.toString();
+  String get id => _device.peripheral.uuid.toString();
   @override
-  String? get name => device.advertisement.name;
+  String? get name => _device.advertisement.name;
   @override
-  int? get rssi => device.rssi;
+  int? get rssi => _device.rssi;
 
   @override
   BleConnector createConnector() {
     return BluetoothLowEnergyConnector(
-      backend: backend,
-      serviceIds: serviceIds,
-      peripheral: device.peripheral,
+      backend: _backend,
+      peripheral: _device.peripheral,
     );
   }
 }

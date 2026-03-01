@@ -5,11 +5,11 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:bluez_backend/bluez_scanner.dart';
 
 class BlueZCentral extends BleCentral {
-  BlueZCentral({required this.client}) {
+  BlueZCentral({required BlueZClient client}) : _client = client {
     _init();
   }
 
-  final BlueZClient client;
+  final BlueZClient _client;
   BleCentralStatus _status = BleCentralStatus.unknown;
 
   @override
@@ -17,7 +17,7 @@ class BlueZCentral extends BleCentral {
 
   @override
   BleScanner createScanner({required List<String> serviceIds}) {
-    return BlueZScanner(client: client, serviceIds: serviceIds);
+    return BlueZScanner(client: _client, serviceIds: serviceIds);
   }
 
   @override
@@ -35,18 +35,18 @@ class BlueZCentral extends BleCentral {
   }
 
   Future<void> _init() async {
-    await client.connect();
+    await _client.connect();
 
     int attempts = 0;
     do {
       await Future.delayed(const Duration(milliseconds: 100));
       attempts++;
-    } while (attempts < 10 && client.adapters.isEmpty);
+    } while (attempts < 10 && _client.adapters.isEmpty);
 
-    if (client.adapters.isEmpty) {
+    if (_client.adapters.isEmpty) {
       _updateCentralStatus(BleCentralStatus.unsupported);
     } else {
-      _updateCentralStatus(client.adapters.first.powered
+      _updateCentralStatus(_client.adapters.first.powered
           ? BleCentralStatus.ready
           : BleCentralStatus.poweredOff);
     }

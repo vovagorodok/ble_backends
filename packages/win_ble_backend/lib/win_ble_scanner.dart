@@ -7,9 +7,9 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:win_ble_backend/win_ble_peripheral.dart';
 
 class WinBleScanner extends BaseBleScanner {
-  WinBleScanner({required this.serviceIds}) {
+  WinBleScanner({required List<String> serviceIds}) : _serviceIds = serviceIds {
     WinBle.scanStream.listen((device) {
-      for (final serviceId in serviceIds) {
+      for (final serviceId in _serviceIds) {
         if (!device.serviceUuids
             .any((id) => id.substring(1, id.length - 1) == serviceId)) return;
       }
@@ -17,7 +17,7 @@ class WinBleScanner extends BaseBleScanner {
     });
   }
 
-  final List<String> serviceIds;
+  final List<String> _serviceIds;
   bool _isScanInProgress = false;
 
   @override
@@ -42,9 +42,6 @@ class WinBleScanner extends BaseBleScanner {
   }
 
   BlePeripheral _createPeripheral(BleDevice device) {
-    return WinBlePeripheral(
-      device: device,
-      serviceIds: serviceIds,
-    );
+    return WinBlePeripheral(device: device);
   }
 }

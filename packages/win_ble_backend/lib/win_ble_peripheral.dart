@@ -4,23 +4,19 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:win_ble_backend/win_ble_connector.dart';
 
 class WinBlePeripheral extends BlePeripheral {
-  WinBlePeripheral({required this.device, required this.serviceIds});
+  WinBlePeripheral({required BleDevice device}) : _device = device;
 
-  final BleDevice device;
-  final List<String> serviceIds;
+  final BleDevice _device;
 
   @override
-  String get id => device.address;
+  String get id => _device.address;
   @override
-  String? get name => device.name;
+  String? get name => _device.name;
   @override
-  int? get rssi => int.tryParse(device.rssi);
+  int? get rssi => int.tryParse(_device.rssi);
 
   @override
   BleConnector createConnector() {
-    return WinBleConnector(
-      deviceId: device.address,
-      serviceIds: serviceIds,
-    );
+    return WinBleConnector(deviceId: _device.address);
   }
 }

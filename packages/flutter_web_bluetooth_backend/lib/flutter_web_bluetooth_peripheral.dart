@@ -4,19 +4,20 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:flutter_web_bluetooth_backend/flutter_web_bluetooth_connector.dart';
 
 class FlutterWebBluetoothPeripheral extends BlePeripheral {
-  FlutterWebBluetoothPeripheral({required this.device});
+  FlutterWebBluetoothPeripheral({required BluetoothDevice device})
+      : _device = device;
 
-  final BluetoothDevice device;
+  final BluetoothDevice _device;
 
   @override
-  String get id => device.id;
+  String get id => _device.id;
   @override
-  String? get name => device.name;
+  String? get name => _device.name;
   @override
   int? get rssi => null;
 
   @override
   BleConnector createConnector() {
-    return FlutterWebBluetoothConnector(device: device);
+    return FlutterWebBluetoothConnector(device: _device);
   }
 }

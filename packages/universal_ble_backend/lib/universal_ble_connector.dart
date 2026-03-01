@@ -9,17 +9,16 @@ import 'package:universal_ble_backend/universal_ble_mtu.dart';
 import 'package:universal_ble_backend/universal_ble_characteristic.dart';
 
 class UniversalBleConnector extends BaseBleConnector {
-  UniversalBleConnector({required this.deviceId, required this.serviceIds}) {
+  UniversalBleConnector({required String deviceId}) : _deviceId = deviceId {
     backend.UniversalBle.onConnectionChange =
         (String deviceId, bool isConnected, String? error) {
-      if (deviceId != this.deviceId) return;
+      if (deviceId != _deviceId) return;
       if (isConnected) return;
       _updateConnectorStatus(BleConnectorStatus.disconnected);
     };
   }
 
-  final String deviceId;
-  final List<String> serviceIds;
+  final String _deviceId;
   BleConnectorStatus _state = BleConnectorStatus.disconnected;
 
   @override
@@ -28,15 +27,15 @@ class UniversalBleConnector extends BaseBleConnector {
   @override
   Future<void> connect() async {
     try {
-      await backend.UniversalBle.connect(deviceId);
-      await backend.UniversalBle.discoverServices(deviceId);
+      await backend.UniversalBle.connect(_deviceId);
+      await backend.UniversalBle.discoverServices(_deviceId);
       _updateConnectorStatus(BleConnectorStatus.connected);
     } catch (_) {}
   }
 
   @override
   Future<void> disconnect() async {
-    await backend.UniversalBle.disconnect(deviceId);
+    await backend.UniversalBle.disconnect(_deviceId);
     _updateConnectorStatus(BleConnectorStatus.disconnected);
   }
 
@@ -47,25 +46,28 @@ class UniversalBleConnector extends BaseBleConnector {
   }
 
   @override
+  String get deviceId => _deviceId;
+
+  @override
   bool get isConnectToKnownDeviceSupported => false;
 
   @override
   Future<List<String>> discoverServices() async {
-    return (await backend.UniversalBle.discoverServices(deviceId))
+    return (await backend.UniversalBle.discoverServices(_deviceId))
         .map((service) => service.uuid)
         .toList();
   }
 
   @override
   BleMtu createMtu() {
-    return UniversalBleMtu(deviceId: deviceId);
+    return UniversalBleMtu(deviceId: _deviceId);
   }
 
   @override
   BleCharacteristic createCharacteristic(
       {required String serviceId, required String characteristicId}) {
     return UniversalBleCharacteristic(
-        deviceId: deviceId,
+        deviceId: _deviceId,
         serviceId: serviceId,
         characteristicId: characteristicId);
   }

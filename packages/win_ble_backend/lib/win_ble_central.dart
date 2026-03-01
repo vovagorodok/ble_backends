@@ -27,7 +27,7 @@ class WinBleCentral extends BleCentral {
   @override
   BleConnector createConnectorToKnownDevice(
       {required String deviceId, required List<String> serviceIds}) {
-    return WinBleConnector(deviceId: deviceId, serviceIds: serviceIds);
+    return WinBleConnector(deviceId: deviceId);
   }
 
   @override

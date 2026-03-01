@@ -10,14 +10,16 @@ import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_characteristic
 
 class FlutterReactiveBleConnector extends BaseBleConnector {
   FlutterReactiveBleConnector({
-    required this.backend,
-    required this.deviceId,
-    required this.serviceIds,
-  });
+    required FlutterReactiveBle backend,
+    required String deviceId,
+    required List<Uuid> serviceIds,
+  })  : _backend = backend,
+        _deviceId = deviceId,
+        _serviceIds = serviceIds;
 
-  final FlutterReactiveBle backend;
-  final String deviceId;
-  final List<Uuid> serviceIds;
+  final FlutterReactiveBle _backend;
+  final String _deviceId;
+  final List<Uuid> _serviceIds;
   BleConnectorStatus _state = BleConnectorStatus.disconnected;
   StreamSubscription? _connection;
 
@@ -26,7 +28,7 @@ class FlutterReactiveBleConnector extends BaseBleConnector {
 
   @override
   Future<void> connect() async {
-    _connection = backend.connectToDevice(id: deviceId).listen(
+    _connection = _backend.connectToDevice(id: _deviceId).listen(
           _updateState,
           onError: (Object e) {},
         );
@@ -47,9 +49,9 @@ class FlutterReactiveBleConnector extends BaseBleConnector {
   Future<void> connectToKnownDevice(
       {Duration duration = const Duration(seconds: 20)}) async {
     _updateConnectorStatus(BleConnectorStatus.scanning);
-    _connection = backend
+    _connection = _backend
         .connectToAdvertisingDevice(
-            id: deviceId, withServices: serviceIds, prescanDuration: duration)
+            id: _deviceId, withServices: _serviceIds, prescanDuration: duration)
         .listen(
           _updateState,
           onDone: () => _updateConnectorStatus(BleConnectorStatus.disconnected),
@@ -62,23 +64,26 @@ class FlutterReactiveBleConnector extends BaseBleConnector {
   bool get isConnectToKnownDeviceSupported => true;
 
   @override
+  String get deviceId => _deviceId;
+
+  @override
   Future<List<String>> discoverServices() async {
-    return (await backend.getDiscoveredServices(deviceId))
+    return (await _backend.getDiscoveredServices(_deviceId))
         .map((service) => service.id.toString())
         .toList();
   }
 
   @override
   BleMtu createMtu() {
-    return FlutterReactiveBleMtu(backend: backend, deviceId: deviceId);
+    return FlutterReactiveBleMtu(backend: _backend, deviceId: _deviceId);
   }
 
   @override
   BleCharacteristic createCharacteristic(
       {required String serviceId, required String characteristicId}) {
     return FlutterReactiveBleCharacteristic(
-        backend: backend,
-        deviceId: deviceId,
+        backend: _backend,
+        deviceId: _deviceId,
         serviceId: Uuid.parse(serviceId),
         characteristicId: Uuid.parse(characteristicId));
   }

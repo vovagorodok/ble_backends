@@ -7,13 +7,17 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:bluetooth_low_energy_backend/bluetooth_low_energy_peripheral.dart';
 
 class BluetoothLowEnergyScanner extends BaseBleScanner {
-  BluetoothLowEnergyScanner({required this.backend, required this.serviceIds}) {
-    backend.discovered
+  BluetoothLowEnergyScanner({
+    required CentralManager backend,
+    required List<UUID> serviceIds,
+  })  : _backend = backend,
+        _serviceIds = serviceIds {
+    _backend.discovered
         .listen((device) => addPeripheral(_createPeripheral(device)));
   }
 
-  final CentralManager backend;
-  final List<UUID> serviceIds;
+  final CentralManager _backend;
+  final List<UUID> _serviceIds;
   bool _isScanInProgress = false;
 
   @override
@@ -26,7 +30,7 @@ class BluetoothLowEnergyScanner extends BaseBleScanner {
   Future<void> scan() async {
     devices.clear();
     _isScanInProgress = true;
-    await backend.startDiscovery(serviceUUIDs: serviceIds);
+    await _backend.startDiscovery(serviceUUIDs: _serviceIds);
     notifyState(state);
   }
 
@@ -34,14 +38,13 @@ class BluetoothLowEnergyScanner extends BaseBleScanner {
   Future<void> stop() async {
     if (!_isScanInProgress) return;
     _isScanInProgress = false;
-    await backend.stopDiscovery();
+    await _backend.stopDiscovery();
     notifyState(state);
   }
 
   BlePeripheral _createPeripheral(DiscoveredEventArgs device) {
     return BluetoothLowEnergyPeripheral(
-      backend: backend,
-      serviceIds: serviceIds,
+      backend: _backend,
       device: device,
     );
   }

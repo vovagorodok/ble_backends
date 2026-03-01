@@ -5,13 +5,13 @@ import 'package:win_ble/win_ble.dart';
 import 'package:ble_backend/ble_mtu.dart';
 
 class WinBleMtu extends BleMtu {
-  WinBleMtu({required this.deviceId});
+  WinBleMtu({required String deviceId}) : _deviceId = deviceId;
 
-  final String deviceId;
+  final String _deviceId;
 
   @override
   Future<int> request({required int mtu}) async {
-    return min(await WinBle.getMaxMtuSize(deviceId), mtu);
+    return min(await WinBle.getMaxMtuSize(_deviceId), mtu);
   }
 
   @override

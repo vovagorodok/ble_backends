@@ -5,12 +5,13 @@ import 'package:bluez/bluez.dart';
 import 'package:ble_backend/ble_mtu.dart';
 
 class BlueZMtu extends BleMtu {
-  BlueZMtu({required this.device});
-  final BlueZDevice device;
+  BlueZMtu({required BlueZDevice device}) : _device = device;
+
+  final BlueZDevice _device;
 
   @override
   Future<int> request({required int mtu}) async {
-    for (BlueZGattService service in device.gattServices) {
+    for (BlueZGattService service in _device.gattServices) {
       for (BlueZGattCharacteristic characteristic in service.characteristics) {
         int? requested = characteristic.mtu;
         // The value provided by Bluez includes an extra 3 bytes from the GATT header, which needs to be removed.

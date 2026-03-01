@@ -9,10 +9,11 @@ import 'package:bluez_backend/bluez_mtu.dart';
 import 'package:bluez_backend/bluez_characteristic.dart';
 
 class BlueZConnector extends BaseBleConnector {
-  BlueZConnector({required this.device, required this.serviceIds});
+  BlueZConnector({
+    required BlueZDevice device,
+  }) : _device = device;
 
-  final BlueZDevice device;
-  final List<String> serviceIds;
+  final BlueZDevice _device;
   BleConnectorStatus _state = BleConnectorStatus.disconnected;
 
   @override
@@ -20,22 +21,22 @@ class BlueZConnector extends BaseBleConnector {
 
   @override
   Future<void> connect() async {
-    await device.connect();
+    await _device.connect();
 
     int attempts = 0;
     do {
       await Future.delayed(const Duration(milliseconds: 100));
       attempts++;
-    } while (attempts < 10 && !device.connected);
+    } while (attempts < 10 && !_device.connected);
 
-    _updateConnectorStatus(device.connected
+    _updateConnectorStatus(_device.connected
         ? BleConnectorStatus.connected
         : BleConnectorStatus.disconnected);
   }
 
   @override
   Future<void> disconnect() async {
-    await device.disconnect();
+    await _device.disconnect();
     _updateConnectorStatus(BleConnectorStatus.disconnected);
   }
 
@@ -49,22 +50,25 @@ class BlueZConnector extends BaseBleConnector {
   bool get isConnectToKnownDeviceSupported => false;
 
   @override
+  String get deviceId => _device.address;
+
+  @override
   Future<List<String>> discoverServices() async {
-    return device.gattServices
+    return _device.gattServices
         .map((service) => service.uuid.toString())
         .toList();
   }
 
   @override
   BleMtu createMtu() {
-    return BlueZMtu(device: device);
+    return BlueZMtu(device: _device);
   }
 
   @override
   BleCharacteristic createCharacteristic(
       {required String serviceId, required String characteristicId}) {
     return BlueZCharacteristic(
-        device: device,
+        device: _device,
         serviceId: BlueZUUID.fromString(serviceId),
         characteristicId: BlueZUUID.fromString(characteristicId));
   }

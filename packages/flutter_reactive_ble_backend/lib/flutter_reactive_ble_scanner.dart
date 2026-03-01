@@ -7,10 +7,14 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_peripheral.dart';
 
 class FlutterReactiveBleScanner extends BaseBleScanner {
-  FlutterReactiveBleScanner({required this.backend, required this.serviceIds});
+  FlutterReactiveBleScanner({
+    required FlutterReactiveBle backend,
+    required List<Uuid> serviceIds,
+  })  : _backend = backend,
+        _serviceIds = serviceIds;
 
-  final FlutterReactiveBle backend;
-  final List<Uuid> serviceIds;
+  final FlutterReactiveBle _backend;
+  final List<Uuid> _serviceIds;
   StreamSubscription? _subscription;
 
   @override
@@ -23,7 +27,7 @@ class FlutterReactiveBleScanner extends BaseBleScanner {
   Future<void> scan() async {
     devices.clear();
     await _subscription?.cancel();
-    _subscription = backend.scanForDevices(withServices: serviceIds).listen(
+    _subscription = _backend.scanForDevices(withServices: _serviceIds).listen(
         (device) => addPeripheral(_createPeripheral(device)),
         onError: (Object e) {});
     notifyState(state);
@@ -38,8 +42,8 @@ class FlutterReactiveBleScanner extends BaseBleScanner {
 
   BlePeripheral _createPeripheral(DiscoveredDevice device) {
     return FlutterReactiveBlePeripheral(
-      backend: backend,
-      serviceIds: serviceIds,
+      backend: _backend,
+      serviceIds: _serviceIds,
       discoveredDevice: device,
     );
   }

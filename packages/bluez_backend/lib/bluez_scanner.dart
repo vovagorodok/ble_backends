@@ -7,13 +7,17 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:bluez_backend/bluez_peripheral.dart';
 
 class BlueZScanner extends BaseBleScanner {
-  BlueZScanner({required this.client, required this.serviceIds}) {
-    client.deviceAdded
+  BlueZScanner({
+    required BlueZClient client,
+    required List<String> serviceIds,
+  })  : _client = client,
+        _serviceIds = serviceIds {
+    _client.deviceAdded
         .listen((device) => addPeripheral(_createPeripheral(device)));
   }
 
-  final BlueZClient client;
-  final List<String> serviceIds;
+  final BlueZClient _client;
+  final List<String> _serviceIds;
   bool _isScanInProgress = false;
 
   @override
@@ -24,8 +28,8 @@ class BlueZScanner extends BaseBleScanner {
 
   @override
   Future<void> scan() async {
-    await client.adapters.first.setDiscoveryFilter(uuids: serviceIds);
-    await client.adapters.first.startDiscovery();
+    await _client.adapters.first.setDiscoveryFilter(uuids: _serviceIds);
+    await _client.adapters.first.startDiscovery();
     _isScanInProgress = true;
     notifyState(state);
   }
@@ -33,15 +37,12 @@ class BlueZScanner extends BaseBleScanner {
   @override
   Future<void> stop() async {
     if (!_isScanInProgress) return;
-    await client.adapters.first.stopDiscovery();
+    await _client.adapters.first.stopDiscovery();
     _isScanInProgress = false;
     notifyState(state);
   }
 
   BlePeripheral _createPeripheral(BlueZDevice device) {
-    return BlueZPeripheral(
-      device: device,
-      serviceIds: serviceIds,
-    );
+    return BlueZPeripheral(device: device);
   }
 }

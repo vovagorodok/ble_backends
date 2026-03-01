@@ -4,23 +4,19 @@ import 'package:ble_backend/ble_connector.dart';
 import 'package:universal_ble_backend/universal_ble_connector.dart';
 
 class UniversalBlePeripheral extends BlePeripheral {
-  UniversalBlePeripheral({required this.device, required this.serviceIds});
+  UniversalBlePeripheral({required BleDevice device}) : _device = device;
 
-  final BleDevice device;
-  final List<String> serviceIds;
+  final BleDevice _device;
 
   @override
-  String get id => device.deviceId;
+  String get id => _device.deviceId;
   @override
-  String? get name => device.name;
+  String? get name => _device.name;
   @override
-  int? get rssi => device.rssi;
+  int? get rssi => _device.rssi;
 
   @override
   BleConnector createConnector() {
-    return UniversalBleConnector(
-      deviceId: device.deviceId,
-      serviceIds: serviceIds,
-    );
+    return UniversalBleConnector(deviceId: _device.deviceId);
   }
 }

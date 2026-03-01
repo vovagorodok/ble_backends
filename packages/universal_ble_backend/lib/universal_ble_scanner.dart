@@ -7,12 +7,13 @@ import 'package:ble_backend/base/base_ble_scanner.dart';
 import 'package:universal_ble_backend/universal_ble_peripheral.dart';
 
 class UniversalBleScanner extends BaseBleScanner {
-  UniversalBleScanner({required this.serviceIds}) {
+  UniversalBleScanner({required List<String> serviceIds})
+      : _serviceIds = serviceIds {
     UniversalBle.onScanResult =
         (device) => addPeripheral(_createPeripheral(device));
   }
 
-  final List<String> serviceIds;
+  final List<String> _serviceIds;
   bool _isScanInProgress = false;
 
   @override
@@ -26,7 +27,7 @@ class UniversalBleScanner extends BaseBleScanner {
     devices.clear();
     await UniversalBle.startScan(
         scanFilter: ScanFilter(
-      withServices: serviceIds,
+      withServices: _serviceIds,
     ));
     _isScanInProgress = true;
     notifyState(state);
@@ -40,9 +41,6 @@ class UniversalBleScanner extends BaseBleScanner {
   }
 
   BlePeripheral _createPeripheral(BleDevice device) {
-    return UniversalBlePeripheral(
-      device: device,
-      serviceIds: serviceIds,
-    );
+    return UniversalBlePeripheral(device: device);
   }
 }

@@ -6,12 +6,13 @@ import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_scanner.dart';
 import 'package:flutter_reactive_ble_backend/flutter_reactive_ble_connector.dart';
 
 class FlutterReactiveBleCentral extends BleCentral {
-  FlutterReactiveBleCentral({required this.backend})
-      : _status = _convertToCentralStatus(backend.status) {
-    backend.statusStream.listen(_updateState);
+  FlutterReactiveBleCentral({required FlutterReactiveBle backend})
+      : _backend = backend,
+        _status = _convertToCentralStatus(backend.status) {
+    _backend.statusStream.listen(_updateState);
   }
 
-  final FlutterReactiveBle backend;
+  final FlutterReactiveBle _backend;
   BleCentralStatus _status;
 
   @override
@@ -20,14 +21,14 @@ class FlutterReactiveBleCentral extends BleCentral {
   @override
   BleScanner createScanner({required List<String> serviceIds}) {
     return FlutterReactiveBleScanner(
-        backend: backend, serviceIds: _convertToUuids(serviceIds));
+        backend: _backend, serviceIds: _convertToUuids(serviceIds));
   }
 
   @override
   BleConnector createConnectorToKnownDevice(
       {required String deviceId, required List<String> serviceIds}) {
     return FlutterReactiveBleConnector(
-        backend: backend,
+        backend: _backend,
         deviceId: deviceId,
         serviceIds: _convertToUuids(serviceIds));
   }
